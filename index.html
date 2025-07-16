@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tính điểm xét tốt nghiệp</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f2f2f2;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    input {
+      padding: 8px;
+      width: 100%;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px;
+      width: 100%;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Tính điểm xét tốt nghiệp</h2>
+    <label>Điểm Toán:</label>
+    <input type="number" id="toan" step="0.01">
+    
+    <label>Điểm Ngữ văn:</label>
+    <input type="number" id="van" step="0.01">
+    
+    <label>Điểm Lịch sử:</label>
+    <input type="number" id="su" step="0.01">
+    
+    <label>Điểm Địa lý:</label>
+    <input type="number" id="dia" step="0.01">
+    
+    <label>Điểm TB lớp 12:</label>
+    <input type="number" id="dtb12" step="0.01">
+    
+    <label>Điểm ưu tiên:</label>
+    <input type="number" id="uutien" step="0.01" value="0">
+    
+    <button onclick="tinhDiem()">Tính điểm</button>
+    
+    <div id="result"></div>
+  </div>
 
+  <script>
+    function tinhDiem() {
+      const toan = parseFloat(document.getElementById("toan").value) || 0;
+      const van = parseFloat(document.getElementById("van").value) || 0;
+      const su = parseFloat(document.getElementById("su").value) || 0;
+      const dia = parseFloat(document.getElementById("dia").value) || 0;
+      const dtb12 = parseFloat(document.getElementById("dtb12").value) || 0;
+      const uutien = parseFloat(document.getElementById("uutien").value) || 0;
+
+      const tb4mon = (toan + van + su + dia) / 4;
+      const diemTN = ((tb4mon + dtb12) / 2) + uutien;
+
+      document.getElementById("result").innerText =
+        "Điểm xét tốt nghiệp: " + diemTN.toFixed(2);
+    }
+  </script>
+</body>
+</html>
